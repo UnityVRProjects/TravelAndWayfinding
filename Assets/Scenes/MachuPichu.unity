@@ -122,6 +122,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &390269864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 390269866}
+  - component: {fileID: 390269865}
+  m_Layer: 0
+  m_Name: CheckpointLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &390269865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390269864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37769123b89fa2a429134c04d71fd0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  file: {fileID: 4900000, guid: 14d3634a6eb787b409c488252b1da0c5, type: 3}
+  checkpointMaterial: {fileID: 2100000, guid: 33e42e639b0112f40a7d8b86f11ecb5b, type: 2}
+  sphereRadius: 1.5
+  checkpointTriggerRadius: 9.144
+  xrOrigin: {fileID: 2121153735}
+  reachedMaterial: {fileID: 2100000, guid: 7a61c5ffee5dc864b8ddc8842c339216, type: 2}
+--- !u!4 &390269866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390269864}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3382.8987, y: 2491.2002, z: -8439.315}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &401543855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +1915,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 20db303e930200a4f8a476cf11f2c0c5,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0254
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 20db303e930200a4f8a476cf11f2c0c5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0254
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 20db303e930200a4f8a476cf11f2c0c5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0254
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 20db303e930200a4f8a476cf11f2c0c5,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -2006,6 +2071,7 @@ GameObject:
   - component: {fileID: 2121153737}
   - component: {fileID: 2121153736}
   - component: {fileID: 2121153739}
+  - component: {fileID: 2121153740}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -2086,6 +2152,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2121153740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121153735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7884dfb571e8f24b8497f6b2c5241a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Trigger Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 92c2bd4e-8f98-4fac-957b-ec5f23fbe728
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 2022672366867931949, guid: 2fb0356874c631940ab1d93e0c03623e,
+      type: 3}
+  directionInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Direction Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 41dec476-689e-4630-8b62-d76d12feccaa
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  flyTrigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Fly Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 5d1e4e1d-7a28-4db6-af1a-924ef6bad42d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 2022672366867931949, guid: 2fb0356874c631940ab1d93e0c03623e,
+      type: 3}
+  moveSpeed: 50
+  xrOrigin: {fileID: 2121153737}
+  controllerTransform: {fileID: 401543856}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2095,3 +2214,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 547948914}
   - {fileID: 2121153738}
+  - {fileID: 390269866}
