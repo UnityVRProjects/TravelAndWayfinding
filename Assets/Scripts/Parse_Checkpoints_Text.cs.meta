@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - file: {instanceID: 0}
+  - file: {fileID: 4900000, guid: 14d3634a6eb787b409c488252b1da0c5, type: 3}
   - checkpointMaterial: {fileID: 2100000, guid: 33e42e639b0112f40a7d8b86f11ecb5b,
       type: 2}
   - xrOrigin: {instanceID: 0}
