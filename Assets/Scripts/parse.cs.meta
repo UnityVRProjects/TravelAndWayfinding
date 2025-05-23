@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 37769123b89fa2a429134c04d71fd0b1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - file: {instanceID: 0}
+  - checkpointMaterial: {fileID: 2100000, guid: 33e42e639b0112f40a7d8b86f11ecb5b,
+      type: 2}
+  - xrOrigin: {instanceID: 0}
+  - reachedMaterial: {fileID: 2100000, guid: 7a61c5ffee5dc864b8ddc8842c339216, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
