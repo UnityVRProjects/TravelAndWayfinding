@@ -114,6 +114,34 @@ public partial class @XRActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""SwitchCamera"",
+            ""id"": ""c801c731-a663-45e7-b21b-13f6760ae34b"",
+            ""actions"": [
+                {
+                    ""name"": ""thirdPOV"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf54b109-b3a8-4c58-a64e-ac1d07ae43d4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fa27bc42-e4d7-4272-8e24-4c0a0c46af67"",
+                    ""path"": ""<XRController>{LeftHand}/{TriggerButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""thirdPOV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -121,11 +149,15 @@ public partial class @XRActions: IInputActionCollection2, IDisposable
         // XRMotion
         m_XRMotion = asset.FindActionMap("XRMotion", throwIfNotFound: true);
         m_XRMotion_FlyTrigger = m_XRMotion.FindAction("FlyTrigger", throwIfNotFound: true);
+        // SwitchCamera
+        m_SwitchCamera = asset.FindActionMap("SwitchCamera", throwIfNotFound: true);
+        m_SwitchCamera_thirdPOV = m_SwitchCamera.FindAction("thirdPOV", throwIfNotFound: true);
     }
 
     ~@XRActions()
     {
         UnityEngine.Debug.Assert(!m_XRMotion.enabled, "This will cause a leak and performance issues, XRActions.XRMotion.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_SwitchCamera.enabled, "This will cause a leak and performance issues, XRActions.SwitchCamera.Disable() has not been called.");
     }
 
     /// <summary>
@@ -293,6 +325,102 @@ public partial class @XRActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="XRMotionActions" /> instance referencing this action map.
     /// </summary>
     public XRMotionActions @XRMotion => new XRMotionActions(this);
+
+    // SwitchCamera
+    private readonly InputActionMap m_SwitchCamera;
+    private List<ISwitchCameraActions> m_SwitchCameraActionsCallbackInterfaces = new List<ISwitchCameraActions>();
+    private readonly InputAction m_SwitchCamera_thirdPOV;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "SwitchCamera".
+    /// </summary>
+    public struct SwitchCameraActions
+    {
+        private @XRActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public SwitchCameraActions(@XRActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "SwitchCamera/thirdPOV".
+        /// </summary>
+        public InputAction @thirdPOV => m_Wrapper.m_SwitchCamera_thirdPOV;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_SwitchCamera; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="SwitchCameraActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(SwitchCameraActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="SwitchCameraActions" />
+        public void AddCallbacks(ISwitchCameraActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SwitchCameraActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SwitchCameraActionsCallbackInterfaces.Add(instance);
+            @thirdPOV.started += instance.OnThirdPOV;
+            @thirdPOV.performed += instance.OnThirdPOV;
+            @thirdPOV.canceled += instance.OnThirdPOV;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="SwitchCameraActions" />
+        private void UnregisterCallbacks(ISwitchCameraActions instance)
+        {
+            @thirdPOV.started -= instance.OnThirdPOV;
+            @thirdPOV.performed -= instance.OnThirdPOV;
+            @thirdPOV.canceled -= instance.OnThirdPOV;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="SwitchCameraActions.UnregisterCallbacks(ISwitchCameraActions)" />.
+        /// </summary>
+        /// <seealso cref="SwitchCameraActions.UnregisterCallbacks(ISwitchCameraActions)" />
+        public void RemoveCallbacks(ISwitchCameraActions instance)
+        {
+            if (m_Wrapper.m_SwitchCameraActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="SwitchCameraActions.AddCallbacks(ISwitchCameraActions)" />
+        /// <seealso cref="SwitchCameraActions.RemoveCallbacks(ISwitchCameraActions)" />
+        /// <seealso cref="SwitchCameraActions.UnregisterCallbacks(ISwitchCameraActions)" />
+        public void SetCallbacks(ISwitchCameraActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SwitchCameraActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SwitchCameraActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="SwitchCameraActions" /> instance referencing this action map.
+    /// </summary>
+    public SwitchCameraActions @SwitchCamera => new SwitchCameraActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "XRMotion" which allows adding and removing callbacks.
     /// </summary>
@@ -307,5 +435,20 @@ public partial class @XRActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFlyTrigger(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "SwitchCamera" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="SwitchCameraActions.AddCallbacks(ISwitchCameraActions)" />
+    /// <seealso cref="SwitchCameraActions.RemoveCallbacks(ISwitchCameraActions)" />
+    public interface ISwitchCameraActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "thirdPOV" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThirdPOV(InputAction.CallbackContext context);
     }
 }

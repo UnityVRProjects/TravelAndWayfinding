@@ -13,10 +13,22 @@ public class XRControllerMovement : MonoBehaviour
     public XROrigin xrOrigin;
     public Transform controllerTransform;        // Right hand/controller transform
 
+
+    public Camera mainCam;
+    public Camera thirdviewCam;
+    public Transform LcontrollerTransform;
+    public InputActionProperty thirdPOV;
+
+    private bool lastThirdPOVPressed = false;
+
     // Start is called before the first frame update
     void Start()
     {
         flyTrigger.action.Enable();
+
+        thirdPOV.action.Enable();
+        mainCam.gameObject.SetActive(true);
+        thirdviewCam.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,5 +42,20 @@ public class XRControllerMovement : MonoBehaviour
 
             transform.position += direction * input * moveSpeed * Time.deltaTime;
         }
+
+        bool isThirdPOVPressed = thirdPOV.action.IsPressed();
+        if (isThirdPOVPressed && !lastThirdPOVPressed)
+        {
+            // Toggle cameras
+            bool useThirdView = !thirdviewCam.gameObject.activeSelf;
+            thirdviewCam.gameObject.SetActive(useThirdView);
+            mainCam.gameObject.SetActive(!useThirdView);
+            if (useThirdView) {
+                xrOrigin.Camera = thirdviewCam;
+            } else {
+                xrOrigin.Camera = mainCam;
+            }
+        }
+        lastThirdPOVPressed = isThirdPOVPressed;
     }
 }
