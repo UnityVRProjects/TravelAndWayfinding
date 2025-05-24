@@ -81,6 +81,7 @@ public class FileParser : MonoBehaviour
                 renderer.material = checkpointMaterial;
             }
 
+            stopwatch.Stop();
             // Adds the checkpoint interaction code
             Checkpoint cp = sphere.AddComponent<Checkpoint>();
             cp.reachedMaterial = reachedMaterial;
