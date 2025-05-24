@@ -40,12 +40,7 @@ public class Stopwatch : MonoBehaviour
     //         stopwatchText.fontSize = 120;
     //     }
     // }
-    // string FormatTime(float t)
-    // {
-    //     int minutes = Mathf.FloorToInt(t / 60f);
-    //     float seconds = t % 60f;
-    //     return $"Time: {minutes}:{seconds:00.0}";
-    // }
+
     public TextMeshProUGUI stopwatchText;
     public bool stopwatchRunning = true;
 
