@@ -303,6 +303,7 @@ MonoBehaviour:
   xrOrigin: {fileID: 2121153735}
   reachedMaterial: {fileID: 2100000, guid: 7a61c5ffee5dc864b8ddc8842c339216, type: 2}
   stopwatch: {fileID: 112869553}
+  reachedSound: {fileID: 8300000, guid: 61e544d4c743c724b8fd45275f2bf9a4, type: 3}
 --- !u!4 &390269866
 Transform:
   m_ObjectHideFlags: 0
