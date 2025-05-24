@@ -7,7 +7,7 @@ public class Countdown : MonoBehaviour
     public TextMeshProUGUI countdownText;
     public XRControllerMovement movementScript;
     public Stopwatch stopwatchManager;
-    public float countdownTime = 3f;
+    public float countdownTime = 5f;
 
     void Start()
     {

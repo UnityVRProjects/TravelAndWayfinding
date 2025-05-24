@@ -9,7 +9,7 @@ public class XRControllerMovement : MonoBehaviour
     public InputActionProperty triggerInput;     // Trigger value (float)
     public InputActionProperty directionInput;   // Controller's pointing direction (pose)
     public InputActionProperty flyTrigger;
-    public float moveSpeed = 120f;
+    public float moveSpeed = 150f;
     public XROrigin xrOrigin;
     public Transform controllerTransform;        // Right hand/controller transform
 
