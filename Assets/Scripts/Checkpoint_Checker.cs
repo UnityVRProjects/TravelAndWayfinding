@@ -9,7 +9,9 @@ public class Checkpoint : MonoBehaviour
     public float triggerDistance = 9.144f;
     public Transform player;
     private bool reached;
-    //public Stopwatch stopwatchInCP;
+    public int checkpointIndex;
+    public int totalCheckpoints;
+    public Stopwatch stopwatchManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,12 @@ public class Checkpoint : MonoBehaviour
                 {
                     Debug.Log("Setting respawn point");
                     respawner.SetRespawnPoint(transform);
+                }
+
+                if (checkpointIndex == totalCheckpoints - 1 && stopwatchManager != null)
+                {
+                    stopwatchManager.Stop();
+                    Debug.Log("Stopwatch stopped - final checkpoint reached!");
                 }
 
                 Debug.Log($"{gameObject.name} reached!");

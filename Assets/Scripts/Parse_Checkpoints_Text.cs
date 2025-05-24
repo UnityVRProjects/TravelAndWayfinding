@@ -12,7 +12,7 @@ public class FileParser : MonoBehaviour
     public GameObject xrOrigin;
     public Material reachedMaterial;
 
-    //private Stopwatch stopwatch;
+    public Stopwatch stopwatch;
 
     void Start()
     {
@@ -85,7 +85,9 @@ public class FileParser : MonoBehaviour
             cp.reachedMaterial = reachedMaterial;
             cp.player = xrOrigin.transform;
             cp.triggerDistance = checkpointTriggerRadius;
-            //cp.stopwatchInCP = stopwatch;
+            cp.checkpointIndex = i;
+            cp.totalCheckpoints = positions.Count;
+            cp.stopwatchManager = stopwatch;
 
             sphere.transform.parent = this.transform;
 

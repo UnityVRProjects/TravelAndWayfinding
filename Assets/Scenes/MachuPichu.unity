@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 112869554}
   - component: {fileID: 112869553}
   m_Layer: 0
-  m_Name: RaceManager
+  m_Name: StopwatchObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,6 +302,7 @@ MonoBehaviour:
   checkpointTriggerRadius: 9.144
   xrOrigin: {fileID: 2121153735}
   reachedMaterial: {fileID: 2100000, guid: 7a61c5ffee5dc864b8ddc8842c339216, type: 2}
+  stopwatch: {fileID: 112869553}
 --- !u!4 &390269866
 Transform:
   m_ObjectHideFlags: 0
