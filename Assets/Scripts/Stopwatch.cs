@@ -66,6 +66,11 @@ public class Stopwatch : MonoBehaviour
         stopwatchRunning = true;
     }
 
+    public void AddPenalty()
+    {
+        elapsedTime += 3.0f;
+    }
+
     private string FormatTime(float time)
     {
         int minutes = Mathf.FloorToInt(time / 60f);

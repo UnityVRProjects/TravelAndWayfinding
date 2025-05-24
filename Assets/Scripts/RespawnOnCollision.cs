@@ -5,6 +5,7 @@ public class RespawnOnCollision : MonoBehaviour
     public Transform respawnPoint; // Last checkpoint reached
                                    // public Transform xrCamera;
     private Rigidbody rb;
+    public Stopwatch stopwatch;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,12 +31,11 @@ public class RespawnOnCollision : MonoBehaviour
                 // Quaternion worldForward = Quaternion.LookRotation(Vector3.forward, Vector3.up);
                 // transform.rotation = worldForward;
 
-
-                // Vector3 cameraForwardFlat = new Vector3(xrCamera.forward.x, 0, xrCamera.forward.z).normalized;
-                // float angleToForward = Vector3.SignedAngle(cameraForwardFlat, Vector3.forward, Vector3.up);
-
-                // // Step 3: Apply a rotation in the opposite direction so the camera faces forward
-                // transform.Rotate(Vector3.up, angleToForward);
+                if (stopwatch != null)
+                {
+                    stopwatch.AddPenalty();
+                    Debug.Log("Added penalty after hitting the map.");
+                }
 
                 Debug.Log("Player hit the map and was respawned.");
             }
