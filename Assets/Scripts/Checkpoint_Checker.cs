@@ -42,7 +42,7 @@ public class Checkpoint : MonoBehaviour
                 if (respawner != null)
                 {
                     Debug.Log("Setting respawn point");
-                    respawner.SetRespawnPoint(transform);
+                    respawner.SetRespawnPoint(transform, checkpointIndex);
                 }
 
                 if (checkpointSound != null && audioSource != null)
