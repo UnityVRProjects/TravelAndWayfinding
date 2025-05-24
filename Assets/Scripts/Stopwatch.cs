@@ -42,7 +42,7 @@ public class Stopwatch : MonoBehaviour
     // }
 
     public TextMeshProUGUI stopwatchText;
-    public bool stopwatchRunning = true;
+    public bool stopwatchRunning = false;
 
     private float elapsedTime = 0f;
 
@@ -58,6 +58,11 @@ public class Stopwatch : MonoBehaviour
     public void Stop()
     {
         stopwatchRunning = false;
+    }
+
+    public void Go()
+    {
+        stopwatchRunning = true;
     }
 
     public void ResetStopwatch()
