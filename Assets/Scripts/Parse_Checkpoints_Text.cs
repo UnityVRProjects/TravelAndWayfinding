@@ -72,6 +72,7 @@ public class FileParser : MonoBehaviour
             sphere.transform.position = positions[i];
             sphere.transform.localScale = Vector3.one * sphereRadius * 2f;
             sphere.name = $"Checkpoint_{i + 1}";
+            sphere.GetComponent<Collider>().isTrigger = true;
 
             if (checkpointMaterial != null)
             {
