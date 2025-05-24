@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -28,9 +29,16 @@ public class Checkpoint : MonoBehaviour
                 if (renderer != null && reachedMaterial != null)
                 {
                     renderer.material = reachedMaterial;
+                    Debug.Log("Changed material of checkpoint");
                     // if(stopwatchInCP != null){
                     //     stopwatchInCP.CheckpointReached();
                     // }
+                }
+                RespawnOnCollision respawner = player.GetComponent<RespawnOnCollision>();
+                if (respawner != null)
+                {
+                    Debug.Log("Setting respawn point");
+                    respawner.SetRespawnPoint(transform);
                 }
 
                 Debug.Log($"{gameObject.name} reached!");
