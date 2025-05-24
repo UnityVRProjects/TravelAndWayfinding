@@ -12,10 +12,15 @@ public class Checkpoint : MonoBehaviour
     public int checkpointIndex;
     public int totalCheckpoints;
     public Stopwatch stopwatchManager;
+    public AudioClip checkpointSound;
+    private AudioSource audioSource;
     // Start is called before the first frame update
+
     void Start()
     {
-
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f; //1.0f for 3D sound
     }
 
     // Update is called once per frame
@@ -32,15 +37,19 @@ public class Checkpoint : MonoBehaviour
                 {
                     renderer.material = reachedMaterial;
                     Debug.Log("Changed material of checkpoint");
-                    // if(stopwatchInCP != null){
-                    //     stopwatchInCP.CheckpointReached();
-                    // }
                 }
                 RespawnOnCollision respawner = player.GetComponent<RespawnOnCollision>();
                 if (respawner != null)
                 {
                     Debug.Log("Setting respawn point");
                     respawner.SetRespawnPoint(transform);
+                }
+
+                if (checkpointSound != null && audioSource != null)
+                {
+                    audioSource.clip = checkpointSound;
+                    audioSource.Play();
+                    Debug.Log("Sound of checkpoint reached is playing");
                 }
 
                 if (checkpointIndex == totalCheckpoints - 1 && stopwatchManager != null)

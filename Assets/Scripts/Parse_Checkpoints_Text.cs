@@ -13,6 +13,7 @@ public class FileParser : MonoBehaviour
     public Material reachedMaterial;
 
     public Stopwatch stopwatch;
+    public AudioClip reachedSound;
 
     void Start()
     {
@@ -88,6 +89,7 @@ public class FileParser : MonoBehaviour
             cp.checkpointIndex = i;
             cp.totalCheckpoints = positions.Count;
             cp.stopwatchManager = stopwatch;
+            cp.checkpointSound = reachedSound;
 
             sphere.transform.parent = this.transform;
 
