@@ -25,17 +25,13 @@ public class XRControllerMovement : MonoBehaviour
     void Start()
     {
         flyTrigger.action.Enable();
-
         thirdPOV.action.Enable();
-        mainCam.gameObject.SetActive(true);
-        thirdviewCam.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         float input = flyTrigger.action.ReadValue<float>();
-
         if (input > 0.1f)
         {
             Vector3 direction = controllerTransform.forward;
@@ -44,17 +40,15 @@ public class XRControllerMovement : MonoBehaviour
         }
 
         bool isThirdPOVPressed = thirdPOV.action.IsPressed();
+
         if (isThirdPOVPressed && !lastThirdPOVPressed)
-        {
+        {   
+
+            Debug.Log("Switch POV");
             // Toggle cameras
             bool useThirdView = !thirdviewCam.gameObject.activeSelf;
             thirdviewCam.gameObject.SetActive(useThirdView);
-            mainCam.gameObject.SetActive(!useThirdView);
-            if (useThirdView) {
-                xrOrigin.Camera = thirdviewCam;
-            } else {
-                xrOrigin.Camera = mainCam;
-            }
+            mainCam.usePhysicalProperties = !useThirdView;
         }
         lastThirdPOVPressed = isThirdPOVPressed;
     }

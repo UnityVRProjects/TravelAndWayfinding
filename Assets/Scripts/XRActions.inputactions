@@ -28,6 +28,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CamSwitch",
+            "id": "d06c567c-f179-4942-bbbf-51a9f2894cd9",
+            "actions": [
+                {
+                    "name": "camGrip",
+                    "type": "Button",
+                    "id": "d269a2f6-70fc-4b3f-a70a-ff6e48f2b88c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a91c7cf4-a607-4b30-9c9a-2e9ce3b4ffd9",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "camGrip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
