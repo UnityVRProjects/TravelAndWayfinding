@@ -9,9 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MachuPichu.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 0217025227c87cb4985de1914a90be29,
+      type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: d6deedd4509e51544ad73906530674be,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 32ca9e66a4d32134e990061ab54584c4,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: ba7f804cb15aa974ebe796f832a0801d,
       type: 2}
+  m_UseUCBPForAssetBundles: 0
